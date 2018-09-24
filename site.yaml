@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+  - name: Display message
+    debug:
+      msg: "Running the task"
+
+  - name: Create a k8s namespace
+    k8s_raw:
+      name: testing
+      kubeconfig: /.kube/config
+      api_version: v1
+      kind: Namespace
+      state: present

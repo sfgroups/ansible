@@ -10,7 +10,13 @@ RUN	apk --update add \
 		p7zip \
 		python \
 		py-lxml \
-		py-pip \		
+		py-pip \
+		rsync \
+		sshpass \
+		sudo \
+		subversion \
+		vim \
+		zip \
     	&& apk --update add --virtual \
 		build-dependencies \
 		python-dev \
@@ -18,20 +24,24 @@ RUN	apk --update add \
 		openssl-dev \
 		build-base \
 	&& pip install --upgrade \
-		pip \		
+		pip \
+		cffi \
 	&& pip install \
-		ansible>=2.6.4 \		
+		ansible>=2.6.4 \
+		awscli  \
+		boto  \
+ 		boto3  \
 		docker-py \
 		dopy  \
 		pywinrm  \
 		pyvmomi \
-		pysphere \
+		pysphere>=0.1.7 \
 		openshift \
 		dictdiffer \
 		jinja2 \
-		kubernetes \
+		kubernetes >= 6.0.0 \
 		python-string-utils \
-		ruamel.yaml \
+		ruamel.yaml >= 0.15 \
 		six \
 	&& apk del build-dependencies \
 	&& rm -rf /var/cache/apk/*
