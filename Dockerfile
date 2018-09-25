@@ -37,8 +37,15 @@ RUN	apk --update add \
 	&& rm -rf /var/cache/apk/*
 
 RUN	mkdir -p /etc/ansible \		
-	&& echo 'localhost' > /etc/ansible/hosts \		
+	&& echo 'localhost' > /etc/ansible/hosts \			
 	&& mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
+	
+ENV KUBECTL_VERSION 11.1.1
+ENV KUBECTL_URI https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl
+
+RUN curl -SL ${KUBECTL_URI} -o kubectl && chmod +x kubectl
+
+ENV PATH="/:${PATH}"
 
 ONBUILD	WORKDIR	/tmp
 ONBUILD	COPY 	. /tmp
