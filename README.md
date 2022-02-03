@@ -1,5 +1,11 @@
 # Ansible Docker
 
+SSH Key Gent
+
+```
+ssh-keygen -N ''  -t ed25519 -f ~/.ssh/id_ed25519 -C "Secure Key"
+
+```
 1. Build
 
  docker build -t sfgroups/alpine-ansible:0.1 .
